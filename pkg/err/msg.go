@@ -1,4 +1,4 @@
-package e
+package app_err
 
 var MsgFlags = map[int]string{
 	SUCCESS:        "ok",

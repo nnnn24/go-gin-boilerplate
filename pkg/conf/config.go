@@ -8,14 +8,24 @@ import (
 )
 
 type Config struct {
-	ServerPort string
-	GinRunMode string
+	ServerPort      string
+	GinRunMode      string
+	LogSaveName     string
+	LogFileExt      string
+	RuntimeRootPath string
+	TimeFormat      string
+	LogSavePath     string
 }
 
 func Load() *Config {
 	return &Config{
-		ServerPort: getEnvOrDefault("SERVER_PORT", "8080"),
-		GinRunMode: getEnvOrDefault("GIN_RUN_MODE", "debug"),
+		ServerPort:      getEnvOrDefault("SERVER_PORT", "8080"),
+		GinRunMode:      getEnvOrDefault("GIN_RUN_MODE", "debug"),
+		LogSaveName:     getEnvOrDefault("LOG_SAVE_NAME", "log"),
+		LogFileExt:      getEnvOrDefault("LOG_FILE_EXT", "log"),
+		RuntimeRootPath: getEnvOrDefault("RUNTIME_ROOT_PATH", "runtime/"),
+		TimeFormat:      getEnvOrDefault("TIME_FORMAT", "20010101"),
+		LogSavePath:     getEnvOrDefault("LOG_SAVE_PATH", "logs/"),
 	}
 }
 

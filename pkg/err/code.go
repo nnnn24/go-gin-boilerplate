@@ -1,4 +1,4 @@
-package e
+package app_err
 
 const (
 	SUCCESS        = 200

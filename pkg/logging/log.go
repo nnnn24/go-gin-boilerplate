@@ -6,7 +6,9 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"time"
 
+	"github.com/nnnn24/go-gin-boilerplate/pkg/conf"
 	"github.com/nnnn24/go-gin-boilerplate/pkg/file"
 )
 
@@ -32,9 +34,18 @@ const (
 )
 
 // Setup initialize the log instance
-func Setup(filePath, fileName string) {
-	var err error
-	F, err = file.MustOpen(fileName, filePath)
+func Setup() {
+	cfg := conf.Get()
+
+	fileName := fmt.Sprintf("%s%s.%s",
+		cfg.LogSaveName,
+		time.Now().Format(cfg.TimeFormat),
+		cfg.LogFileExt,
+	)
+
+	filePath := fmt.Sprintf("%s%s", cfg.RuntimeRootPath, cfg.LogSavePath)
+
+	F, err := file.MustOpen(fileName, filePath)
 	if err != nil {
 		log.Fatalf("logging.Setup err: %v", err)
 	}
